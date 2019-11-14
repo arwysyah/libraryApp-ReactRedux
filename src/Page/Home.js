@@ -10,6 +10,7 @@ import { postBook } from "../Components/Redux/Actions/books";
 import { getGenre } from "../Components/Redux/Actions/genre";
 import { getStatus } from "../Components/Redux/Actions/status";
 import { getTitle } from "../Components/Redux/Actions/title";
+import {getCategories} from "../Components/Redux/Actions/categories"
 
 class Home extends Component {
   constructor(props) {
@@ -28,7 +29,8 @@ class Home extends Component {
 
       allGenre: [],
       allStatus: [],
-      optTitle: []
+      optTitle: [],
+      categData: []
     };
   }
   async componentDidMount() {
@@ -62,13 +64,20 @@ class Home extends Component {
     });
   };
 
+  handleCategories =event=>{
+    console.log('this handle categories', event.target.value)
+    event.preventDefault()
+    const Categ = event.target.value
+    this.props.dispatch(getCategories(Categ)).then(()=>{
+      this.setState({ data: this.props.dataCategories.categoriesData})
+    })
+  }
+
   handleSearch = event =>{
     event.preventDefault()
-    const search =event.target.value
-    // alert(search)
-    console.log("handle on Search", event.target.value)
+    const search =event.target.value  
 this.props.dispatch(getTitle(search)).then(()=>{
-  this.setState({data: this.props.datatitle.titleData
+  this.setState({data : this.props.datatitle.titleData
    
   })
 })
@@ -119,8 +128,10 @@ this.props.dispatch(getTitle(search)).then(()=>{
 
     return (
       <div className="home">
-        <Navbar>
-
+        <Navbar
+        handleCategories={this.handleCategories}
+        
+        > <div>
         <div class="input-field">
                 <input id="search" type="search" required onChange={this.handleSearch}/>
                 <label
@@ -137,7 +148,7 @@ this.props.dispatch(getTitle(search)).then(()=>{
                   </i>
                 </label>
               </div>
-
+              </div>
         </Navbar>
         <SideNav
           tittle={tittle} // disini berubah namanya disederhanakan
@@ -203,7 +214,8 @@ const mapStateToProps = state => {
     datapost: state.postBook,
     datagenre: state.getGenre,
     datastatus: state.getStatus,
-    datatitle: state.getTitle //namaProps (terserah): state.nama file di reducer folder yang di import dari index.js
+    datatitle: state.getTitle,
+    dataCategories :state.getCategories //namaProps (terserah): state.nama file di reducer folder yang di import dari index.js
   };
 };
 export default connect(mapStateToProps)(Home); // menggabungin redux

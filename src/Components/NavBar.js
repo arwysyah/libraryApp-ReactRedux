@@ -1,10 +1,10 @@
 import React from "react";
 import "./NavBar.css";
-import AllCategories from "./Data/AllCategories";
 import AllTimes from "./Data/Alltimes";
 const NavBar = (props) => {
   return (
     <nav>
+      
       <div className="nav-wrapper grey lighten-5">
         <a href="slide" data-target="slide-out" className="sidenav-trigger ">
           <i className="material-icons black-text">menu</i>
@@ -30,23 +30,19 @@ const NavBar = (props) => {
             </a>
           </li>
           <li>
-            <a
-              href="waktu"
-              className="dropdown-trigger black-text "
-              data-target="AllCategories"
-            >
-              All Categories
-              <i className="material-icons black-text right">arrow_drop_down</i>
-              <ul id="AllCategories" className="dropdown-content black-text">
-                {AllCategories.map((categorie, indexs) => {
-                  return (
-                    <li key={indexs}>
-                      <a href="#">{categorie}</a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </a>
+          <div className="input-field col s8">
+    <select onChange= {props.handleCategories}>
+
+  
+      <option value="">AllCategories</option>
+      <option value="1">Novel</option>
+      <option value="2">Manga</option>
+      <option value="3">Autobiography</option>
+      <option value="4">Sciene</option>
+      <option value="5">Fiction</option>
+    </select>
+
+  </div>
           </li>
 
           <li>

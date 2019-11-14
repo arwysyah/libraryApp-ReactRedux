@@ -9,6 +9,8 @@ import {deleteBook} from './books'
 import {getGenre} from './genre'
 import {getStatus} from './status'
 import {getTitle} from './title'
+import {getCategories} from './categories'
+
 const appReducer = combineReducers(
     {
         getBooks,
@@ -18,7 +20,8 @@ const appReducer = combineReducers(
         deleteBook,
         getGenre,
         getStatus,
-        getTitle//seharusnya itu books : books dimana book yg kedua meruapakan value namun karena sama satu saja yang tulis
+        getTitle,
+        getCategories//seharusnya itu books : books dimana book yg kedua meruapakan value namun karena sama satu saja yang tulis
     }
 );
 export default appReducer;
