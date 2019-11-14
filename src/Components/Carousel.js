@@ -1,6 +1,5 @@
 import React from 'react';
 import CardCarousel from './Card';
-import book from './Data/Book'
 import M from "materialize-css";
 import './Carousel.css'
 import {connect} from 'react-redux'

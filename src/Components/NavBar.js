@@ -31,7 +31,7 @@ const NavBar = (props) => {
           </li>
           <li>
           <div className="input-field col s8">
-    <select onChange= {props.handleCategories}>
+    <select onChange= {props.handleCategories} style ={{textAlign:"center"}}>
 
   
       <option value="">AllCategories</option>
@@ -46,24 +46,21 @@ const NavBar = (props) => {
           </li>
 
           <li>
-            <a
-              href="waktu"
-              className="dropdown-trigger black-text "
-              data-target="AllTimes"
-            >
-              All Times
-              <i className="material-icons black-text right">arrow_drop_down</i>
-              <ul id="AllTimes" className="dropdown-content black-text">
-                {AllTimes.map((year, index) => {
-                  return (
-                    <li key={index}>
-                      <a href="#">{year}</a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </a>
+          <div className="input-field col s8">
+    <select >
+
+  
+      <option value="">All Times</option>
+      <option value="1">2018</option>
+      <option value="2">2017</option>
+      <option value="3">2016</option>
+      <option value="4">2015</option>
+      <option value="5">2014</option>
+    </select>
+
+  </div>
           </li>
+
           <li>
                 {props.children}
 

@@ -11,6 +11,7 @@ import { getGenre } from "../Components/Redux/Actions/genre";
 import { getStatus } from "../Components/Redux/Actions/status";
 import { getTitle } from "../Components/Redux/Actions/title";
 import {getCategories} from "../Components/Redux/Actions/categories"
+import Pagination from '../Components/pagination'
 
 class Home extends Component {
   constructor(props) {
@@ -30,7 +31,9 @@ class Home extends Component {
       allGenre: [],
       allStatus: [],
       optTitle: [],
-      categData: []
+      categData: [],
+      currentPage: 1,
+      postsPerPage: 6,
     };
   }
   async componentDidMount() {
@@ -112,6 +115,11 @@ this.props.dispatch(getTitle(search)).then(()=>{
   };
 
   render() {
+  // Get current posts
+  const indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage;
+  const currentPosts = this.state.data.slice(indexOfFirstPost, indexOfLastPost);
+
     console.log("dat",this.state.optTitle)
     const {
       tittle, // karena sudah di declare disini jadi this.state.tempbooksnya berubah menjadi title doang
@@ -188,7 +196,7 @@ this.props.dispatch(getTitle(search)).then(()=>{
             List Novels
           </h4>
           <div className="row">
-            {this.state.data.map((book, index) => {
+            {currentPosts.map((book, index) => {
               // disini data ddalam bentuk objek di rander
               return (
                 <ListCards
@@ -203,6 +211,12 @@ this.props.dispatch(getTitle(search)).then(()=>{
               );
             })}
           </div>
+          <Pagination 
+          postsPerPage={this.state.postsPerPage} 
+          totalPosts={this.state.data.length} 
+          paginate={pageNum => {
+            this.setState({currentPage: pageNum})
+          }}/>
         </div>
       </div>
     );
