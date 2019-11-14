@@ -1,6 +1,6 @@
 
 
-# 👨‍💻 Library-Frontend
+# 👨‍💻 Library-App-ReactRedux
 
 
 
@@ -25,13 +25,93 @@
 
 ## Installation
 
-React has been designed for gradual adoption from the start, and **you can use as little or as much React as you need**:
+# 📚MY BOOK APP
 
-* Use [Online Playgrounds](https://reactjs.org/docs/getting-started.html#online-playgrounds) to get a taste of React.
-* [Add React to a Website](https://reactjs.org/docs/add-react-to-a-website.html) as a `<script>` tag in one minute.
-* [Create a New React App](https://reactjs.org/docs/create-a-new-react-app.html) if you're looking for a powerful JavaScript toolchain.
+A Collection Of Books Using ReactJS Redux
 
-You can use React as a `<script>` tag from a [CDN](https://reactjs.org/docs/cdn-links.html), or as a `react` package on [npm](https://www.npmjs.com/).
+
+<p align="center">
+ 
+  </a>
+  <a href="#">
+    <img title="Open Source Love" src="https://badges.frapsoft.com/os/v1/open-source.svg?v=102">
+  </a>
+  <a href="https://github.com/iyansr?tab=followers">
+    <img title="Followers" src="https://img.shields.io/github/followers/iyansr?style=social">
+  </a>
+  <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg"></a>
+  <a href="#">
+    <img title="Repo Size" src="https://img.shields.io/github/repo-size/kenzoymc/libraryApp-ReactRedux.git">
+  </a>
+ 
+</p>
+
+## Table Of Contents
+
+- [Book APP](#book-app)
+  - [Table Of Content](#table-of-content)
+  - [Build Setup](#build-setup)
+  - [Stacks](#stacks)
+  - [Dependencies](#dependencies)
+  - [Aplication Structure](#aplication-Structure)
+  - [Screenshots](#screenshots)
+
+## Build Setup
+```bash
+1. Clone repository
+   `$ git clone https://github.com/kenzoymc/libraryApp-ReactRedux.git
+
+2. Install depedencies
+
+```bash
+# with npm
+$ npm install
+
+# or with yarn
+$ yarn install
+```
+
+3. Start Web server
+
+```bash
+$ nodemon server
+```
+
+## Stacks
+
+- ReactJS
+- Materialize CSS
+- Redux
+- NodeJS
+- Express
+
+## Dependencies
+
+- [materialize-css](https://www.npmjs.com/package/materialize-css) - Materialize, a CSS Framework based on material design.
+- [react-router-dom](https://www.npmjs.com/package/react-router-dom) - DOM bindings for React Router.
+- [redux-promise-middleware](https://www.npmjs.com/package/redux-promise-middleware) - Redux Promise Middleware enables simple, yet robust handling of async action creators in Redux.
+- [react-redux](https://www.npmjs.com/package/react-redux) - Official React bindings for Redux. Performant and flexible.
+- [axios](https://www.npmjs.com/package/axios) - Promise based HTTP client for the browser and node.js
+- [redux](https://www.npmjs.com/package/redux) - Redux is a predictable state container for JavaScript apps.
+
+## Aplication Structure
+
+- `index.js` - Entry point of our aplication
+- `App.js` - Define all routes here
+- `src/Components` - This folder containt files that define all components
+- `src/Pages` - All pages of this web goes here
+- `src/Helpers` - This folder contain file that help you simplify your code such as define dummy data
+- `src/Assets` - This folder contain assets for this web, such as images
+- `src/Styles` - This folder contain styling files
+
+---
+
+## Screenshots
+ <img 
+      alt="Node.js"
+      src="https://raw.githubusercontent.com/kenzoymc/libraryApp-ReactRedux/master/src/asset/Screenshot_2019-11-15%20React%20App.png"
+      width="700"/><a href="#">
+      <br>
 
 ## Documentation
 
@@ -40,60 +120,7 @@ You can find the React documentation [on the website](https://reactjs.org/docs).
 <br/><br/>
 
 ##  Project Documentation
-<p>
-  <a href="#">
-    <img 
-      alt="Node.js"
-      src="https://raw.githubusercontent.com/kenzoymc/library-frontend/master/src/asset/Screenshot%20from%202019-11-08%2014-08-18.png"
-      width="700"/><a href="#">
-      <br><br>
-      <img 
-      alt="Node.js"
-      src="https://raw.githubusercontent.com/kenzoymc/library-frontend/master/src/asset/Screenshot%20from%202019-11-08%2014-08-52.png"
-      width="700"/><a href="#">
-<br>
- <img 
-      alt="Node.js"
-      src="https://raw.githubusercontent.com/kenzoymc/library-frontend/master/src/asset/Screenshot%20from%202019-11-09%2004-01-27.png"
-      width="700"/><a href="#">
-      <br>
-       <img 
-      alt="Node.js"
-      src="https://raw.githubusercontent.com/kenzoymc/library-frontend/master/src/asset/Screenshot%20from%202019-11-09%2004-01-43.png"
-      width="700"/><a href="#">
-      <br>
-       <img 
-      alt="Node.js"
-      src="https://raw.githubusercontent.com/kenzoymc/library-frontend/master/src/asset/Screenshot%20from%202019-11-09%2011-53-27.png"
-      width="700"/><a href="#">
-      <br>
-       <img 
-      alt="Node.js"
-      src="https://raw.githubusercontent.com/kenzoymc/library-frontend/master/src/asset/Screenshot%20from%202019-11-09%2011-53-33.png"
-      width="700"/><a href="#">
-      <br>
-  </a>
-  </p>
- 
-  
 
-<br><br/>
-## How To Run
-
-- Clone Project
-
-```bash
-$ git clone https://github.com/kenzoymc/library-frontend
-
-$ npm install -g create-react-app
-```
-
-- Change To Specific Task and run
-
-```bash
-example
-$ npm start
-```
 
 - Author Account
 
