@@ -10,7 +10,7 @@ export const getBooks = (prevstate = Initialstate, action) => {
   switch (action.type) {
     case "GET_BOOK_PENDING":
       return {
-        ...prevstate,
+        ...prevstate, //memecah dulu
         isLoading: true, //kondisional s
         isRejected: false,
 
@@ -27,7 +27,7 @@ export const getBooks = (prevstate = Initialstate, action) => {
         ...prevstate,
         isLoading: false,
         isFullfilled: true,
-        bookData: action.payload.data.response
+        bookData: action.payload.data.response // response itu merupakan nama response yang ada di backend
       };
 
 

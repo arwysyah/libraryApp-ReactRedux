@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from 'react-redux'
 
 const SideNav = props => {
   return (
@@ -109,12 +110,10 @@ const SideNav = props => {
                       value={props.status}
                       onChange={props.onChange}
                     >
-                      <option value="" disabled selected>
-                        Choose the Status
-                      </option>
-                      <option value="1">Available</option>
-                      <option value="2">Unavailable</option>
+                      {props.statusDropDown}>
+                                     
                     </select>
+                    <label htmlFor="genre">Status</label>
                   </div>
                 </div>
                 <div className="row">
@@ -127,14 +126,8 @@ const SideNav = props => {
                       value={props.genre}
                       onChange={props.onChange}
                     >
-                      <option value="" disabled selected>
-                       Choose the  Genre
-                      </option>
-                      <option value="1">Novel</option>
-                      <option value="2">Manga</option>
-                      <option value="3">Authobiography</option>
-                      <option value="4">Science</option>
-                      <option value="5">Fiction</option>
+
+                      {props.genreDropDown}
                     </select>
                     <label htmlFor="genre">Genre</label>
                   </div>
@@ -155,4 +148,5 @@ const SideNav = props => {
     </div>
   );
 };
+
 export default SideNav;

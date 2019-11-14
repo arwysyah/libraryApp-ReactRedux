@@ -12,7 +12,7 @@ class Carousel extends React.Component {
     this.state = {
 
       data: [],
-      show : false,
+      // show : false,
     };
   }
   async componentDidMount() {

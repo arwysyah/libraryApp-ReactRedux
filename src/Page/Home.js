@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import Navbar from "../Components/NavBar";
 import { connect } from "react-redux";
-// import M from "materialize-css";
+import M from "materialize-css";
 import Carousel from "../Components/Carousel";
 import SideNav from "../Components/SideNav";
 import ListCards from "../Components/ListCards";
 import { getBook } from "../Components/Redux/Actions/books";
 import { postBook } from "../Components/Redux/Actions/books";
+import { getGenre } from "../Components/Redux/Actions/genre";
+import { getStatus } from "../Components/Redux/Actions/status";
+import { getTitle } from "../Components/Redux/Actions/title";
 
 class Home extends Component {
   constructor(props) {
@@ -18,36 +21,58 @@ class Home extends Component {
         author: "",
         image_url: "",
         description: "",
-        status: "",
-        genre: ""
+        status: "1",
+        genre: "1"
       },
       data: [],
-      show: false
+
+      allGenre: [],
+      allStatus: [],
+      optTitle: []
     };
   }
   async componentDidMount() {
     console.log("didmount");
 
-    // const elems = document.querySelectorAll(".carousel");
-    // const options = {
-    //   shift: 130,
-    //   duration: 100
-    // };
-    // M.Carousel.init(elems, options);
+    await this.props.dispatch(getBook()); // menunggu sampai properti di kirim
+    await this.props.dispatch(getGenre());
+    await this.props.dispatch(getStatus());
+    
+   
 
-    await this.props.dispatch(getBook());
     this.setState({
-      data: this.props.data.bookData, // bookData dari reducer
+      data: this.props.databooks.bookData, //data itu nama yang dideclare di bawah konek
+      allGenre: this.props.datagenre.genreData, // bookData dari reducer
+      allStatus: this.props.datastatus.statusData,
+      // optTitle: this.props.datatitle.titleData
+      
     });
-    // M.AutoInit();
+    M.AutoInit();
+
+    var elems = document.querySelectorAll("select");
+    M.FormSelect.init(elems);
   }
 
+    
+    
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({
       tempBooks: { ...this.state.tempBooks, [name]: value }
     });
   };
+
+  handleSearch = event =>{
+    event.preventDefault()
+    const search =event.target.value
+    // alert(search)
+    console.log("handle on Search", event.target.value)
+this.props.dispatch(getTitle(search)).then(()=>{
+  this.setState({data: this.props.datatitle.titleData
+   
+  })
+})
+  }
 
   handleonSubmit = event => {
     event.preventDefault();
@@ -62,21 +87,23 @@ class Home extends Component {
       genre
     } = this.state.tempBooks;
 
-    const newBook = { 
-      tittle:tittle,  // ini yang bakal di post ke database, jadi namanya harus dissesuain
-      author, 
-      image_url, 
-      description, 
-      status, 
-      genre 
+    const newBook = {
+      tittle: tittle, // ini yang bakal di post ke database, jadi namanya harus dissesuain
+      author,
+      image_url,
+      description,
+      status,
+      genre
     };
-    console.log({ hasilsubmit: newBook });// parameternya dalah new book (bagian terakhhir dari add book)
-    this.props.dispatch(postBook(newBook)).then(()=>{
-      window.location.href="/"
-    })
+
+    console.log({ hasilsubmit: newBook }); // parameternya dalah new book (bagian terakhhir dari add book)
+    this.props.dispatch(postBook(newBook)).then(() => {
+      window.location.href = "/";
+    });
   };
 
   render() {
+    console.log("dat",this.state.optTitle)
     const {
       tittle, // karena sudah di declare disini jadi this.state.tempbooksnya berubah menjadi title doang
       author,
@@ -85,10 +112,33 @@ class Home extends Component {
       status,
       genre
     } = this.state.tempBooks;
-    console.log(this.state.data);
+    // console.log("ini isi tempbooks " + this.state.tempBooks);
+    // console.log(this.state.allGenre);
+    // console.log("ini status" + this.state.allStatus);
+    // console.log("ini opsion title " + this.state.optTitle);
+
     return (
       <div className="home">
-        <Navbar />
+        <Navbar>
+
+        <div class="input-field">
+                <input id="search" type="search" required onChange={this.handleSearch}/>
+                <label
+                  className="label-icon black-text "
+                  style={{ width: "12px" }}
+                  for="search"
+                >
+                  <i
+                    class="material-icons black-text"
+                    style={{ alignItems: "center" }}
+                    
+                  >
+                    search
+                  </i>
+                </label>
+              </div>
+
+        </Navbar>
         <SideNav
           tittle={tittle} // disini berubah namanya disederhanakan
           author={author} //namaprops = nilai props
@@ -97,7 +147,23 @@ class Home extends Component {
           status={status}
           genre={genre}
           onChange={this.handleChange.bind(this)}
-          onSubmit ={this.handleonSubmit.bind(this)}
+          onSubmit={this.handleonSubmit.bind(this)}
+          genreDropDown={this.state.allGenre.map((g, i) => {
+            return (
+              <option value={g.id}>
+                {g.genre}
+                {}
+              </option> // hasil map di dalam option di add modul
+            );
+          })}
+          statusDropDown={this.state.allStatus.map((s, i) => {
+            return (
+              <option value={s.id}>
+                {s.status}
+                {}
+              </option>
+            );
+          })}
         />
         <Carousel />
 
@@ -112,9 +178,9 @@ class Home extends Component {
           </h4>
           <div className="row">
             {this.state.data.map((book, index) => {
+              // disini data ddalam bentuk objek di rander
               return (
                 <ListCards
-                
                   alt={book.tittle.trim()}
                   to={`/Sinopsis/${book.id}`}
                   id={index}
@@ -133,8 +199,11 @@ class Home extends Component {
 }
 const mapStateToProps = state => {
   return {
-    data: state.getBooks,
-    datapost : state.postBook //namaProps (terserah): state.nama file di reducer folder yang di import dari index.js
+    databooks: state.getBooks,
+    datapost: state.postBook,
+    datagenre: state.getGenre,
+    datastatus: state.getStatus,
+    datatitle: state.getTitle //namaProps (terserah): state.nama file di reducer folder yang di import dari index.js
   };
 };
 export default connect(mapStateToProps)(Home); // menggabungin redux

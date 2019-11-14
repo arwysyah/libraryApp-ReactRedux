@@ -2,7 +2,7 @@ import React from "react";
 import "./NavBar.css";
 import AllCategories from "./Data/AllCategories";
 import AllTimes from "./Data/Alltimes";
-const NavBar = () => {
+const NavBar = (props) => {
   return (
     <nav>
       <div className="nav-wrapper grey lighten-5">
@@ -69,23 +69,9 @@ const NavBar = () => {
             </a>
           </li>
           <li>
-            <form>
-              <div class="input-field">
-                <input id="search" type="search" required />
-                <label
-                  className="label-icon black-text "
-                  style={{ width: "12px" }}
-                  for="search"
-                >
-                  <i
-                    class="material-icons black-text"
-                    style={{ alignItems: "center" }}
-                  >
-                    search
-                  </i>
-                </label>
-              </div>
-            </form>
+                {props.children}
+
+                
           </li>
         </ul>
       </div>

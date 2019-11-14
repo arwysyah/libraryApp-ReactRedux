@@ -57,7 +57,7 @@ class Sinopsis extends Component {
         await this.props.dispatch(deleteBook(id)).then(() => 
         swal("Poof! Your imaginary file has been deleted!", {
           icon: "success",
-        }).then(() => window.location.href = '/')
+        }).then(() => window.location.href = `/`)
         )
 
       } else {
@@ -91,7 +91,7 @@ class Sinopsis extends Component {
       genre 
       }
       console.log({ hasilsubmit: newEdit });// parameternya dalah new book (bagian terakhhir dari add book)
-      this.props.dispatch(putBook(newEdit, id)).then(()=> window.location.href="/")
+      this.props.dispatch(putBook(newEdit, id)).then(()=> window.location.href=`/Sinopsis/${id}`)
   };
   
 
