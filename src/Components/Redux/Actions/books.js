@@ -15,7 +15,7 @@ export const getBookbyId = (id)=> {
     payload : Axios.get(`http://localhost:8000/book/${id}`)
   }
 }
-export const postBook = (newBoook)=> { // parameternya ada karena da yang mau di action dari objek
+export const postBook = (newBoook)=> { // parameternya ada karena da yang mau di action dari objek dan karena kita mau ngirimkan objek
   return{
     type: "POST_BOOKS",
     payload : Axios.post(`http://localhost:8000/book`, newBoook)

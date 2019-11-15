@@ -1,6 +1,5 @@
 import React from "react";
 import "./NavBar.css";
-import AllTimes from "./Data/Alltimes";
 const NavBar = (props) => {
   return (
     <nav>
@@ -45,7 +44,7 @@ const NavBar = (props) => {
   </div>
           </li>
 
-          <li>
+          {/* <li>
           <div className="input-field col s8">
     <select >
 
@@ -59,7 +58,7 @@ const NavBar = (props) => {
     </select>
 
   </div>
-          </li>
+          </li> */}
 
           <li>
                 {props.children}

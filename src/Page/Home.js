@@ -17,7 +17,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: [],
+      // books: [],
       tempBooks: {
         tittle: "",
         author: "",
@@ -115,12 +115,13 @@ this.props.dispatch(getTitle(search)).then(()=>{
   };
 
   render() {
+    console.log('ini isi list book ' , this.props.databooks.bookData)
   // Get current posts
   const indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
   const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage;
   const currentPosts = this.state.data.slice(indexOfFirstPost, indexOfLastPost);
 
-    console.log("dat",this.state.optTitle)
+    // console.log("dat",this.state.optTitle)
     const {
       tittle, // karena sudah di declare disini jadi this.state.tempbooksnya berubah menjadi title doang
       author,
@@ -129,10 +130,10 @@ this.props.dispatch(getTitle(search)).then(()=>{
       status,
       genre
     } = this.state.tempBooks;
-    // console.log("ini isi tempbooks " + this.state.tempBooks);
+    // console.log("ini isi tempbooks " , this.state.tempBooks);
     // console.log(this.state.allGenre);
-    // console.log("ini status" + this.state.allStatus);
-    // console.log("ini opsion title " + this.state.optTitle);
+    // console.log("ini status" ,this.state.allStatus);
+    // console.log("ini opsion title " , this.state.optTitle);
 
     return (
       <div className="home">
@@ -193,7 +194,7 @@ this.props.dispatch(getTitle(search)).then(()=>{
               paddingLeft: "5px"
             }}
           >
-            List Novels
+            List Books
           </h4>
           <div className="row">
             {currentPosts.map((book, index) => {

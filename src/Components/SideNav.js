@@ -4,10 +4,10 @@ import {connect} from 'react-redux'
 const SideNav = props => {
   return (
     <div>
-      <ul id="slide-out" className="sidenav brown lighten-3">
+      <ul id="slide-out" className="sidenav  lighten-3">
         <li>
           <div class="user-view">
-            <div class="background pink "></div>
+            <div class="background  "></div>
             <a href="#user">
               <img
                 className="circle"

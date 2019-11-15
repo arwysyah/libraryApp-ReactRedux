@@ -187,7 +187,7 @@ class Sinopsis extends Component {
           Novel
         </a>
         <div className="card-content1">
-        <h2  style={{ marginTop: "10px", fontSize: `20px`, textAlign: "right" , color: "green"}}> Available </h2>
+        {/* <h2  style={{ marginTop: "10px", fontSize: `20px`, textAlign: "right" , color: "green"}}>{status} Available </h2> */}
           <h1
             style={{ marginTop: "30px", fontSize: `25px`, textAlign: "center" }}
           >
