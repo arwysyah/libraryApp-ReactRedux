@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 
 
 const ListCards = props => {
-    const { img, alt, title, description,author }=props;
+    const { img, alt, title,author }=props;
     return(
         <div
       className='row z-depth-5 col s12 m4'

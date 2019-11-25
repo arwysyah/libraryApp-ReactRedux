@@ -1,5 +1,5 @@
 import React from "react";
-import {connect} from 'react-redux'
+
 
 const SideNav = props => {
   return (
@@ -7,7 +7,7 @@ const SideNav = props => {
       <ul id="slide-out" className="sidenav  lighten-3">
         <li>
           <div class="user-view">
-            <div class="background  "></div>
+            
             <a href="#user">
               <img
                 className="circle"
@@ -31,7 +31,7 @@ const SideNav = props => {
         </li>
 
         <li>
-          <a className="modal-trigger" data-target="modal1">
+          <a className="modal-trigger" data-target="modal1" href="#!">
             Add Books
           </a>
         </li>

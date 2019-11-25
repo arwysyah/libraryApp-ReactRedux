@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { getBookbyId } from "../Components/Redux/Actions/books";
 import { putBook } from "../Components/Redux/Actions/books";
 import { deleteBook } from "../Components/Redux/Actions/books";
-import swal from 'sweetalert'
+import swal from "sweetalert";
 
 class Sinopsis extends Component {
   constructor(props) {
@@ -43,30 +43,29 @@ class Sinopsis extends Component {
 
   handleDelete = event => {
     const { id } = this.props.match.params;
-    event.preventDefault()
+    event.preventDefault();
 
     swal({
       title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this imaginary file!",
+      text:
+        "Once deleted, you will not be able to recover this imaginary file!",
       icon: "warning",
       buttons: true,
-      dangerMode: true,
-    })
-    .then(async (klikOk) => {
+      dangerMode: true
+    }).then(async klikOk => {
       if (klikOk) {
-        await this.props.dispatch(deleteBook(id)).then(() => 
-        swal("Poof! Your imaginary file has been deleted!", {
-          icon: "success",
-        }).then(() => window.location.href = `/`)
-        )
-
+        await this.props.dispatch(deleteBook(id)).then(() =>
+          swal("Poof! Your imaginary file has been deleted!", {
+            icon: "success"
+          }).then(() => (window.location.href = `/`))
+        );
       } else {
         swal("Your imaginary file is safe!");
       }
     });
 
-    console.log('Ini Delete')
-  }
+    console.log("Ini Delete");
+  };
 
   handleonSubmit = event => {
     const { id } = this.props.match.params;
@@ -82,18 +81,19 @@ class Sinopsis extends Component {
       status
     } = this.state.tempbooks;
 
-    const newEdit = { 
-      tittle:tittle,  // ini yang bakal di post ke database, jadi namanya harus dissesuain
-      author, 
-      image_url, 
-      description, 
-      status, 
-      genre 
-      }
-      console.log({ hasilsubmit: newEdit });// parameternya dalah new book (bagian terakhhir dari add book)
-      this.props.dispatch(putBook(newEdit, id)).then(()=> window.location.href=`/Sinopsis/${id}`)
+    const newEdit = {
+      tittle: tittle, // ini yang bakal di post ke database, jadi namanya harus dissesuain
+      author,
+      image_url,
+      description,
+      status,
+      genre
+    };
+    console.log({ hasilsubmit: newEdit }); // parameternya dalah new book (bagian terakhhir dari add book)
+    this.props
+      .dispatch(putBook(newEdit, id))
+      .then(() => (window.location.href = `/Sinopsis/${id}`));
   };
-  
 
   render() {
     const {
@@ -123,7 +123,8 @@ class Sinopsis extends Component {
             <Link to={"/"}>
               <div class="col s12">
                 {" "}
-                <a href
+                <a
+                  href
                   className="button_back black-text btn "
                   style={{
                     width: "80px",
@@ -140,9 +141,10 @@ class Sinopsis extends Component {
             <div class="col s6">
               <div id="button bold" style={{ marginTop: "10px" }}>
                 <button
-                  className="waves-effect waves-light black-text btn modal-trigger "
+                  className=" back waves-effect waves-light black-text btn modal-trigger "
                   data-target="editmodal1"
-                  style={{ marginRight: "10px",
+                  style={{
+                    marginRight: "10px",
                     width: "80px",
 
                     fontSize: "10px",
@@ -153,9 +155,9 @@ class Sinopsis extends Component {
                   EDIT
                 </button>
                 <button
-                onClick={this.handleDelete.bind(this)}
-                  className="waves-effect waves-light black-text btn modal-trigger "
-                  style={{ 
+                  onClick={this.handleDelete.bind(this)}
+                  className=" edit waves-effect waves-light black-text btn modal-trigger "
+                  style={{
                     width: "80px",
                     fontSize: "10px",
                     borderRadius: "10px",
@@ -170,33 +172,36 @@ class Sinopsis extends Component {
         </div>
         {
           <div className="smallcard">
-            <img src={this.state.data.image_url} />
+            <img src={this.state.data.image_url} alt="smallcard" />
           </div>
         }
 
-        <a href
-          className="left waves-effect waves-light btn "
-          style={{
-            width: "80px",
-            margin: "20px",
-            fontSize: "10px",
-            borderRadius: "10px",
-            height: "30px"
-          }}
-        >
+        <a href className="href waves-effect waves-light btn ">
           Novel
         </a>
+        <a href className="right  btn ">
+          {this.state.data.status}
+        </a>
+
         <div className="card-content1">
-        {/* <h2  style={{ marginTop: "10px", fontSize: `20px`, textAlign: "right" , color: "green"}}>{status} Available </h2> */}
-          <h1
-            style={{ marginTop: "30px", fontSize: `25px`, textAlign: "center" }}
-          >
-            {this.state.data.tittle}
-          </h1>
+        <a href className="borrow  btn ">
+          borrow
+        </a>
+
+         
+          <h1 className="head">{this.state.data.tittle}</h1>
           
-          <p style={{ width: "auto", textAlign: "justifyContent" , fontfamily: 'Source Sans Pro'}}>
+          <p
+            style={{
+              width: "auto",
+              textAlign: "justifyContent",
+              fontfamily: "Source Sans Pro"
+            }}
+          >
             {this.state.data.description}
+       
           </p>
+         
         </div>
         <EditModal
           tittle={tittle} // disini berubah namanya disederhanakan

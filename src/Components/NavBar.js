@@ -4,7 +4,7 @@ const NavBar = (props) => {
   return (
     <nav>
       
-      <div className="nav-wrapper grey lighten-5">
+      <div className="nav-wrapper purple grey lighten-4">
         <a href="slide" data-target="slide-out" className="sidenav-trigger ">
           <i className="material-icons black-text">menu</i>
         </a>
@@ -14,7 +14,7 @@ const NavBar = (props) => {
             className="image-thumbn right height = 30px"
             src="https://image.flaticon.com/icons/svg/2169/2169566.svg"
             alt=""
-          />
+                />
         </ul>
 
         <ul className="left hide-on-med-and-down">

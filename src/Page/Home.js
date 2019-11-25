@@ -12,6 +12,7 @@ import { getStatus } from "../Components/Redux/Actions/status";
 import { getTitle } from "../Components/Redux/Actions/title";
 import {getCategories} from "../Components/Redux/Actions/categories"
 import Pagination from '../Components/pagination'
+import '../Components/pagination.css'
 
 class Home extends Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class Home extends Component {
       categData: [],
       currentPage: 1,
       postsPerPage: 6,
+      searchValue: ''
     };
   }
   async componentDidMount() {
@@ -76,10 +78,19 @@ class Home extends Component {
     })
   }
 
+  onchangeSearch = event => {
+    const search =event.target.value  
+
+    this.setState({
+      searchValue: search
+    })
+
+  }
+
   handleSearch = event =>{
     event.preventDefault()
-    const search =event.target.value  
-this.props.dispatch(getTitle(search)).then(()=>{
+
+this.props.dispatch(getTitle(this.state.searchValue)).then(()=>{
   this.setState({data : this.props.datatitle.titleData
    
   })
@@ -141,22 +152,26 @@ this.props.dispatch(getTitle(search)).then(()=>{
         handleCategories={this.handleCategories}
         
         > <div>
-        <div class="input-field">
-                <input id="search" type="search" required onChange={this.handleSearch}/>
-                <label
-                  className="label-icon black-text "
-                  style={{ width: "12px" }}
-                  for="search"
-                >
+        
+          <li>
+         
+          <form onSubmit={this.handleSearch}>
+          <div class="input-field" style ={{marginTop: "7px",width:"50%" ,height:"50px"}}>
+          <input id="search" type="search" required onChange={this.onchangeSearch} style={{color:"black" ,marginLeft:"160px",backgroundColor:"white"}}/>
+               
                   <i
-                    class="material-icons black-text"
-                    style={{ alignItems: "center" }}
+                    className="material-icons black-text" style ={{marginTop :"-5px",left:"120px",width:"10px"}}
                     
                   >
                     search
                   </i>
-                </label>
-              </div>
+               
+                  </div>
+          </form>
+          
+          </li>
+                
+              
               </div>
         </Navbar>
         <SideNav
@@ -213,6 +228,7 @@ this.props.dispatch(getTitle(search)).then(()=>{
             })}
           </div>
           <Pagination 
+          style= {{margin :"center"}}
           postsPerPage={this.state.postsPerPage} 
           totalPosts={this.state.data.length} 
           paginate={pageNum => {
